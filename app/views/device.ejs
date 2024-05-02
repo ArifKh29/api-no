@@ -1,0 +1,253 @@
+<main class="flex-1 dark:text-gray-50 text-gray-900">
+    <div class="py-6">
+        <div class="mx-auto lg:max-w-screen-xl px-6">
+            <main class="flex animate-fade-in-bottom-bounce w-full flex-grow flex-col lg:flex-grow-0 lg:px-12 py-8">
+                <div class="flex min-h-full flex-grow flex-col">
+                    
+                    <div class="grid lg:grid-cols-12 gap-5">
+                        <div class="lg:col-span-5">
+                            <div class="bg-white dark:bg-gray-800 w-full border p-3 dark:border-gray-800 rounded-xl overflow-hidden">
+                                <div class="flex justify-end">
+                                    <div id="indicator-status-online" class="bg-green-400/40 hidden text-green-600 rounded-full p-1 px-3 text-[12px] font-semibold">Online ✅ </div>
+                                    <div id="indicator-status-offline" class="bg-slate-400/40 hidden text-slate-600 rounded-full p-1 px-3 text-[12px] font-semibold">Offline</div>
+                                </div>
+                                <div class="flex items-center justify-center py-3">
+                                    <img class="max-w-full max-h-full hidden" src="" id="qrpreview" alt="">
+                                    <div class="py-20 flex hidden items-center text-slate-800" id="display_connected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z"></path>
+                                            <path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z"></path>
+                                            <path d="M3 21l2.5 -2.5"></path>
+                                            <path d="M18.5 5.5l2.5 -2.5"></path>
+                                            <path d="M10 11l-2 2"></path>
+                                            <path d="M13 14l-2 2"></path>
+                                        </svg>
+                                        <div class="ml-1.5">Connected</div>
+                                    </div>
+                                    <div class="py-20 flex hidden items-center text-slate-800" id="display_loading">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 6l0 -3"></path>
+                                            <path d="M16.25 7.75l2.15 -2.15"></path>
+                                            <path d="M18 12l3 0"></path>
+                                            <path d="M16.25 16.25l2.15 2.15"></path>
+                                            <path d="M12 18l0 3"></path>
+                                            <path d="M7.75 16.25l-2.15 2.15"></path>
+                                            <path d="M6 12l-3 0"></path>
+                                            <path d="M7.75 7.75l-2.15 -2.15"></path>
+                                        </svg>
+                                        <div class="ml-1.5">Loading...</div>
+                                    </div>
+                                    <div class="py-20 flex hidden items-center text-slate-800" id="display_error">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z"></path>
+                                            <path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z"></path>
+                                            <path d="M3 21l2.5 -2.5"></path>
+                                            <path d="M18.5 5.5l2.5 -2.5"></path>
+                                            <path d="M10 11l-2 2"></path>
+                                            <path d="M13 14l-2 2"></path>
+                                        </svg>
+                                        <div class="ml-1.5" >OFFLINE</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button id="btnscanqr" class="bg-violet-500 px-2 py-1.5 text-xs hover:scale-[1.02] transition-transform shadow-sm text-white font-semibold rounded-xl">Generate QR</button>
+                                    <button id="btndelete" class="bg-red-500 px-2 py-1.5 text-xs hover:scale-[1.02] transition-transform shadow-sm text-white font-semibold rounded-xl">Delete Session</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="bg-white dark:bg-gray-800 w-full border px-5 pb-5 pt-7 dark:border-gray-800 rounded-xl overflow-hidden">
+                                <form id="settings-update">
+                                    <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600">
+                                        <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">🌐 Webhook</label>
+                                        <input placeholder="https://webhook.site/example" autocomplete="off" value="<%= config_velixs.webhook %>" type="text" name="webhook" class="block w-full py-1 border-0 p-0 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm">
+                                        <button class="bg-primary-500 px-2 py-1.5 text-xs hover:scale-[1.02] transition-transform shadow-sm text-white font-semibold rounded-xl" type="submit">✔️ Update Webhook</button>
+                                    </div>
+                                    <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600 mt-5">
+                                        <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">🔑 Api Key</label>
+                                        <input placeholder="random@apikey" autocomplete="off" value="<%= config_velixs.apikey %>" type="text" name="apikey" class="block w-full py-1 border-0 p-0 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm" readonly>
+                                        <button id="generateApiKeyButton" class="bg-primary-500 px-2 py-1.5 text-xs hover:scale-[1.02] transition-transform shadow-sm text-white font-semibold rounded-xl">🔗 Generate Random API Key</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="logs" class="bg-white mt-4 dark:bg-gray-800 w-full border p-3 dark:border-gray-800 rounded-xl overflow-hidden text-xs">
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/axios.min.js"></script>
+<script>
+    const socket = io();
+    const btn_scanqr = document.getElementById('btnscanqr');
+    const qr_preview = document.getElementById('qrpreview');
+    const display_connected = document.getElementById('display_connected');
+    const display_error = document.getElementById('display_error');
+    const display_loading = document.getElementById('display_loading');
+    const logs_container = document.getElementById('logs');
+    const indicator_sonline = document.getElementById('indicator-status-online');
+    const indicator_soffline = document.getElementById('indicator-status-offline');
+    const btn_delete = document.getElementById("btndelete");
+
+    document.getElementById("settings-update").addEventListener("submit",function(e){
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = "Updating...";
+        axios.post('/dash/settings/<%= session_name %>', {
+            webhook: form.webhook.value,
+            apikey: form.apikey.value
+        }).then((res)=>{
+            btn.disabled = false;
+            btn.innerHTML = "✔️ Update Webhook";
+            addlogs({
+                type: 'success',
+                message: res.data.message
+            })
+        }).catch((err)=>{
+            console.log(err);
+            btn.disabled = false;
+            btn.innerHTML = "✔️ Update Webhook";
+            addlogs({
+                type: 'error',
+                message: err.response.data.message
+            })
+        })
+    })
+
+    btn_delete.addEventListener('click', ()=>{
+        axios.get('<%= route_delete %>').then((res)=>{
+            const apikeyInput = document.querySelector('input[name="apikey"]');
+            apikeyInput.value = "random@apikey";
+            addlogs({
+                type: 'success',
+                message: res.data.message
+            })
+            window.location.href = '/../';
+        }).catch((err)=>{
+            addlogs({
+                type: 'error',
+                message: err.response.data.message
+            })
+            window.location.href = '/../';
+        })
+    })
+
+    btn_scanqr.addEventListener('click', () => {
+        display_loading.classList.remove('hidden');
+        display_connected.classList.add('hidden');
+        display_error.classList.add('hidden');
+        btn_delete.classList.add('hidden');
+        socket.emit('qr_generate', '<%= session_name %>');
+    });
+
+    // event qr update
+    socket.on('qr_update', ({ qr, session }) => {
+        if(session=='<%= session_name %>') {
+            display_connected.classList.add('hidden');
+            display_loading.classList.add('hidden');
+            display_error.classList.add('hidden');
+            qr_preview.classList.remove('hidden');
+            btn_delete.classList.add('hidden');
+            qr_preview.src = qr;
+        }
+    });
+
+    socket.on('connected', ({ session }) => {
+        if(session=='<%= session_name %>'){
+            display_connected.classList.remove('hidden');
+            display_error.classList.add('hidden');
+            display_loading.classList.add('hidden');
+            qr_preview.classList.add('hidden');
+            btn_scanqr.classList.add('hidden');
+            btn_delete.classList.remove('hidden');
+            indicator_sonline.classList.remove("hidden");
+            indicator_soffline.classList.add("hidden");
+        }
+    });
+
+    socket.on('disconnected', ({ session }) => {
+        if(session=='<%= session_name %>'){
+            display_connected.classList.add('hidden');
+            display_loading.classList.add('hidden');
+            display_error.classList.remove('hidden');
+            qr_preview.classList.add('hidden');
+            btn_scanqr.classList.remove('hidden');
+            btn_delete.classList.add('hidden');
+            indicator_sonline.classList.add("hidden");
+            indicator_soffline.classList.remove("hidden");
+        }
+    });
+    
+    socket.on('logs', ({ session, type, message }) => {
+        if(session=='<%= session_name %>'){
+            addlogs({
+                type,
+                message
+            })
+        }
+    });
+
+    function addlogs({ type, message }){
+        if(logs_container.children.length > 3){
+            logs_container.removeChild(logs_container.children[0]);
+        }
+        const logDiv = document.createElement('div');
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString();
+        logDiv.textContent = `${formattedDate} - ${type} : ${message} `;
+        logs_container.appendChild(logDiv);
+    }
+    
+     // Generate random@apikey
+    const generateApiKeyButton = document.getElementById('generateApiKeyButton');
+    generateApiKeyButton.addEventListener('click', () => {
+    const apikeyInput = document.querySelector('input[name="apikey"]');
+    const randomApiKey = generateRandomApiKey(16);
+    apikeyInput.value = randomApiKey;
+});
+
+
+function generateRandomApiKey(length) {
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let apiKey = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    apiKey += charset[randomIndex];
+  }
+  return apiKey;
+}
+
+</script>
+
+<% if(status_session=='offline'){ %>
+    <script> 
+    display_connected.classList.add('hidden'); 
+    indicator_sonline.classList.add("hidden"); 
+    indicator_soffline.classList.remove("hidden"); 
+    display_error.classList.remove('hidden'); 
+    btn_scanqr.classList.remove('hidden');
+    const apikeyInput = document.querySelector('input[name="apikey"]');
+    apikeyInput.value = "random@apikey";</script>
+<% } %>
+
+<% if(status_session=='online'){ %>
+    <script> 
+    display_connected.classList.remove('hidden'); 
+    indicator_sonline.classList.remove("hidden"); 
+    indicator_soffline.classList.add("hidden"); 
+    display_error.classList.add('hidden'); 
+    btn_scanqr.classList.add('hidden');</script>
+<% } %>

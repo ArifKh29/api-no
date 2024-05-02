@@ -1,0 +1,97 @@
+<main class="flex-1 dark:text-gray-50 text-gray-900">
+    <div class="py-6">
+        <div class="mx-auto lg:max-w-screen-xl px-6">
+            <main class="flex animate-fade-in-bottom-bounce w-full flex-grow flex-col lg:flex-grow-0 lg:px-12 py-8">
+                <div class="flex min-h-full flex-grow flex-col">
+    
+                    <div class="">
+                        <div class="sm:flex sm:items-center">
+                            <div class="sm:flex-auto">
+                                <h1 class="text-xl font-semibold text-gray-900">Devices</h1>
+                                <p class="mt-2 text-sm text-gray-700">A list of all the devices.</p>
+                            </div>
+                            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                                <div x-data="{ modal: false }">
+                                    <button @click="modal = !modal" type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 mr-2 flex-shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+
+                                    Add device</button>
+                                
+                                    <div x-show="modal" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                        <div x-show="modal" x-transition.opacity class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                                    
+                                        <div x-show="modal" x-transition class="fixed inset-0 z-10 overflow-y-auto">
+                                            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                                <div @click.outside="modal = !modal" class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-sm sm:p-6">
+                                                    <form id="create-session">
+                                                        <div>
+                                                            <div class="relative rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 shadow-sm focus-within:border-gray-600 focus-within:ring-0 focus-within:ring-gray-600 mt-5">
+                                                                <label class="absolute -top-2 left-2 -mt-px inline-block bg-white dark:bg-gray-800 px-1 text-xs font-medium text-gray-900 dark:text-gray-50">Name Session</label>
+                                                                <input required placeholder="ex: session1" autocomplete="off" type="text" name="device" class="block w-full py-1 border-0 p-0 text-gray-900 dark:text-gray-50 bg-transparent placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-5 sm:mt-6">
+                                                            <button type="submit" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Create</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex flex-col">
+                            <div class="inline-block min-w-full py-2 align-middle">
+                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-300">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Name</th>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Status</th>
+                                                <th scope="col" class="relative py-3 pl-3 pr-4 sm:pr-6">
+                                                    <span class="sr-only">Edit</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                            <% folder_credentials.forEach(function(devices){ %>
+                                            <tr>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= devices['name'] %></td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                    <% if(devices['status_session']=='online'){ %>
+                                                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-600">online</span>
+                                                    <% } else { %>
+                                                        <span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">offline</span>
+                                                    <% } %>
+                                                </td>
+                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <button onclick="window.location.href='/dash/device/<%= devices['name'] %>'" class="bg-primary-500 px-3 py-1 text-xs hover:scale-[1.02] transition-transform shadow-sm text-white font-semibold rounded-xl">Detail</button>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.getElementById("create-session").addEventListener('submit',function(e){
+        e.preventDefault();
+        var data = new FormData(this);
+        data.set('device',data.get('device').replace(/[^a-zA-Z0-9]/g,'').toLowerCase());
+        window.location.href = "dash/device/"+data.get('device');
+    })
+</script>

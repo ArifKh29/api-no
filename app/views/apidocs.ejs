@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/agate.min.css">
+<main class="flex-1 dark:text-gray-50 text-gray-900">
+    <div class="py-6">
+        <div class="mx-auto lg:max-w-screen-xl px-6">
+            <main class="flex animate-fade-in-bottom-bounce w-full flex-grow flex-col lg:flex-grow-0 lg:px-12 py-8">
+                <div class="flex min-h-full flex-grow flex-col">
+
+                    <div class="bg-slate-50 border p-3 rounded-lg mb-5">
+                        <h6 class="font-semibold text-slate-700 mb-3">#Send Text, Image, Video, Document</h6>
+                        <pre><code class="language-javascript rounded-lg">[ GET & POST ]  /api/send-message</code></pre>
+
+                        <div class="px-4 sm:px-6 lg:px-8">
+                            <div class="mt-8 flex flex-col">
+                                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle">
+                                        <div class="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
+                                            <table class="min-w-full divide-y divide-gray-300">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Parameter / Body</th>
+                                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Type</th>
+                                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200 bg-white">
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">apikey</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">String</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Required</span>. Apikey your session.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">mtype</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">Enum</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Required</span>. text, image, video, document</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">receiver</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">String</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Required</span>. Receiver Phone Number with Country Code (e.g: 62812345678) or id group.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">text</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">String</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Required</span>. Text Message.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">url</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">Url</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Image, Video, Document</span>. url file. example : http://domain.com/example.jpg</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">filename</td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="inline-flex rounded-full bg-slate-100 px-2 text-xs font-semibold leading-5 text-slate-600">String</span></td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><span class="font-semibold">Optional</span>. if you want a custom name of the document sent.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
